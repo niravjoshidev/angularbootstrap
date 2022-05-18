@@ -1,4 +1,39 @@
-<div class="container text-center mt-5 mb-5">
+<!-- <div class="container text-center mt-5 mb-5">
   <h1>Bootstrap 5 is working fine with Angular 13!!</h1>
 </div>
-<router-outlet></router-outlet>
+<router-outlet></router-outlet> -->
+<h1>Angular 13 Reactive Forms Validation Example</h1>
+<div class="container-fluid">
+  <div class="col-md-6">
+    <div class="row">
+      <form action="" [formGroup]="form" (ngSubmit)="Submit()">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" id="name" formControlName="name">
+          <div *ngIf="F['name'].touched && F['name'].invalid" class="alert alert-danger">
+            <div *ngIf="F['name'].errors && F['name'].errors['required']">Name isrequired.</div>
+          </div>
+        </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" id="email" class="form-control" formControlName="email">
+        <div *ngIf="F['email'].touched && F['email'].invalid" class="alert alert-danger">
+          <div *ngIf="F['email'].errors && F['email'].errors['required']">Email is required.</div>
+          <div *ngIf="F['email'].errors && F['email'].errors['email']">Invalid Email.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="body">Body</label>
+        <textarea id="body" cols="20" rows="5" class="form-control" formControlName="body"></textarea>
+        <div class="alert alert-danger" *ngIf="F['body'].touched && F['body'].invalid">
+          <div *ngIf="F['body'].errors && F['body'].errors['required']">Body is required.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Submit</button>
+      </div>
+      
+      </form>
+    </div>
+  </div>
+</div>
