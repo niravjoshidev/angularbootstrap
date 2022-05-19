@@ -3,7 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {FormsModule,ReactiveFormsModule} from '@angular/forms'
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+import { NgbModule} from '@ng-bootstrap/ng-bootstrap'
+import {ToastrModule} from 'ngx-toastr'
+import {CarouselModule} from 'ngx-owl-carousel-o'
 
 @NgModule({
   declarations: [
@@ -11,9 +15,14 @@ import {FormsModule,ReactiveFormsModule} from '@angular/forms'
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
+    
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule,
+    ToastrModule.forRoot(),
+    CarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]

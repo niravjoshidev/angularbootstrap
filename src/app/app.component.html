@@ -2,38 +2,148 @@
   <h1>Bootstrap 5 is working fine with Angular 13!!</h1>
 </div>
 <router-outlet></router-outlet> -->
-<h1>Angular 13 Reactive Forms Validation Example</h1>
-<div class="container-fluid">
-  <div class="col-md-6">
-    <div class="row">
-      <form action="" [formGroup]="form" (ngSubmit)="Submit()">
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" class="form-control" id="name" formControlName="name">
-          <div *ngIf="F['name'].touched && F['name'].invalid" class="alert alert-danger">
-            <div *ngIf="F['name'].errors && F['name'].errors['required']">Name isrequired.</div>
-          </div>
-        </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="text" id="email" class="form-control" formControlName="email">
-        <div *ngIf="F['email'].touched && F['email'].invalid" class="alert alert-danger">
-          <div *ngIf="F['email'].errors && F['email'].errors['required']">Email is required.</div>
-          <div *ngIf="F['email'].errors && F['email'].errors['email']">Invalid Email.</div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="body">Body</label>
-        <textarea id="body" cols="20" rows="5" class="form-control" formControlName="body"></textarea>
-        <div class="alert alert-danger" *ngIf="F['body'].touched && F['body'].invalid">
-          <div *ngIf="F['body'].errors && F['body'].errors['required']">Body is required.</div>
-        </div>
-      </div>
-      <div class="form-group">
-        <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Submit</button>
-      </div>
-      
-      </form>
+<!-- <h1>Angular 13 Reactive Forms Validation Example</h1> -->
+
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+  <div class="container-fluid">
+    <a href="#" class="navbar-brand">Angular App</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <!-- <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#" (click)="ShowContent('UserForm')">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" (click)="ShowContent('login')">Link</a>
+        </li> -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Actions
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#" (click)="ShowContent('UserForm')">Boostrap Reactive Form</a></li>
+            <li><a class="dropdown-item" href="#" (click)="ShowContent('BootstrapModal')">Bootstrap Modal</a></li>
+            <li><a class="dropdown-item" href="#" (click)="ShowContent('DatePicker')">Bootstrap Date Picker</a></li>
+            <li><a class="dropdown-item" href="#" (click)="ShowContent('Tostr')">Bootstrap Toastr-Notifications</a></li>
+            <li><a class="dropdown-item" href="#" (click)="ShowContent('Coursal')">Coursal</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li> -->
+      </ul>
+      <!-- <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form> -->
     </div>
   </div>
-</div>
+</nav>
+<ng-container [ngSwitch]="content">
+  <ng-template ngSwitchCase="UserForm">
+    <div class="container-fluid">
+      <div class="col-md-6">
+        <div class="row">
+          <form action="" [formGroup]="form" (ngSubmit)="Submit()">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" id="name" formControlName="name">
+              <div *ngIf="F['name'].touched && F['name'].invalid" class="alert alert-danger">
+                <div *ngIf="F['name'].errors && F['name'].errors['required']">Name isrequired.</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="text" id="email" class="form-control" formControlName="email">
+              <div *ngIf="F['email'].touched && F['email'].invalid" class="alert alert-danger">
+                <div *ngIf="F['email'].errors && F['email'].errors['required']">Email is required.</div>
+                <div *ngIf="F['email'].errors && F['email'].errors['email']">Invalid Email.</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="body">Body</label>
+              <textarea id="body" cols="20" rows="5" class="form-control" formControlName="body"></textarea>
+              <div class="alert alert-danger" *ngIf="F['body'].touched && F['body'].invalid">
+                <div *ngIf="F['body'].errors && F['body'].errors['required']">Body is required.</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template ngSwitchCase="BootstrapModal">
+    <button class="btn btn-lg btn-outline-primary" (click)="open(mymodal)">Open My Modal</button>
+  </ng-template>
+  <ng-template ngSwitchCase="DatePicker">
+    <form class="form-inline">
+      <div class="form-group">
+        <div class="input-group">
+          <input class="form-control" placeholder="yyyy-mm-dd"
+                 name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+          </div>
+        </div>
+      </div>
+    </form>
+       
+  
+    <hr />
+    <pre>Model {{model | json}}</pre>
+  </ng-template>
+  <ng-template ngSwitchCase="Tostr">
+    <button (click)="showToasterSuccess()">
+      Success Toaster
+  </button>
+     
+  <button (click)="showToasterError()">
+      Error Toaster
+  </button>
+     
+  <button (click)="showToasterInfo()">
+      Info Toaster
+  </button>
+     
+  <button (click)="showToasterWarning()">
+      Warning Toaster
+  </button>
+  </ng-template>
+  <ng-template ngSwitchCase="Coursal">
+    <owl-carousel-o>
+      <ng-container *ngFor="let slide of slides">
+        <ng-template carouselSlide id="slide.id">
+          <img [src]="slide.img" >
+        </ng-template>
+      </ng-container>
+    </owl-carousel-o>
+  </ng-template>
+</ng-container>
+
+<!-- Bootstrap-Modal -->
+<ng-template #mymodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Bootstrap Modal</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    This is example of bootstrap modal
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+  </div>
+</ng-template>
+
+
+
+
+
