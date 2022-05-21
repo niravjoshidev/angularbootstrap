@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbModal,ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap'
 import { OwlOptions } from 'ngx-owl-carousel-o';
@@ -14,6 +14,9 @@ export class AppComponent {
   content:string="";
   closeResult: string = '';
   model:any;
+
+  ctrlCountry:string=""
+  ctrlState:string=""
 
   customOptions: OwlOptions = {
     loop: true,
@@ -50,8 +53,18 @@ export class AppComponent {
       {id: 6, img: "https://dummyimage.com/350x150/4a2b7a/fff"}
     ];
 
+    SelectedCountry:any;
+    selectedState:any;
+
+    countries:any =[];
+    states:any=[]
+
   constructor(private _model:NgbModal,private notifyService:NotificationService) {
 
+  }
+
+  ngOnInit(){
+    this.countries = this.getCountries();
   }
 
   form=new FormGroup({
@@ -108,5 +121,39 @@ export class AppComponent {
 
   showToasterWarning() {
     this.notifyService.warning("This is warning", "tutsmake.com")
+  }
+  countryChange(event:any){
+    
+    console.log(event.target.value);
+   this.states = this.getStates().filter(e =>e.countryId===event.target.value) 
+  }
+
+  getCountries(){
+    return [
+      {
+        key:'ind',value:'India'
+      },
+      {
+        key:'aus',value:'Australia'
+      },
+      {
+        key:'eng',value:'Englnd'
+      }
+    ]
+  }
+  getStates(){
+    return [
+      {key:'AP',value:'Andhra Pradesh', countryId:'ind'},
+      {key:'BH',value:'Bihar', countryId:'ind'},
+      {key:'GJ',value:'Gujarat', countryId:'ind'},
+      {key:'MP',value:'Madhya Pradesh', countryId:'ind'},
+      {key:'HP',value:'Himachal Pradesh', countryId:'ind'},
+      {key:'TAS',value:'Tasmania', countryId:'aus'},
+      {key:'VIC',value:'Victoria', countryId:'aus'},
+      {key:'QLD',value:'Queensland', countryId:'aus'},
+      {key:'AV',value:'Avon', countryId:'eng'},
+      {key:'BE',value:'Bedfordshire', countryId:'eng'},
+      {key:'CH',value:'Cheshire', countryId:'eng'},
+    ]
   }
 }
